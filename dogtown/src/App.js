@@ -3,7 +3,7 @@ import Header from './components/Header';
 import RoomScreen from './screens/RoomScreen';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './css/App.css';
 
 
 function App() {

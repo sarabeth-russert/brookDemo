@@ -22,7 +22,6 @@ const RoomScreen = () => {
     const addDog = (pup, room) => {
       emptyRooms();
       updateDogs(pup, room);
-      console.log(dogs)
       updateRooms();
     }
 
@@ -51,6 +50,7 @@ const RoomScreen = () => {
       for (let i = 0; i < rooms.length; i++) {
         temp[rooms[i].name] = rooms[i];
       }
+
       for (let dog in dogs) {
         if (dogs[dog].room !== 'none') {
           temp[dogs[dog].room].dogs.push(dogs[dog]);
