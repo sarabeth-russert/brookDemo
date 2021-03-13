@@ -2,6 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import '../css/Rooms.css'
 
 
 const Rooms = (props) => {

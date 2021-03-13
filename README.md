@@ -39,4 +39,7 @@ To start the app navigate to the dogtown folder within the repo and use command 
 
 ## v3:
 - 3/12/21
+- features:
+  - adds ability to move dogs into rooms and out of the current room
+  - corrects picture alignment in rooms component
 

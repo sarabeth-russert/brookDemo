@@ -10,20 +10,60 @@ import CardDeck from 'react-bootstrap/CardDeck'
 
 const RoomScreen = () => {
   const [dogs, setDogs] = useState({
-    Baxter: {name: 'Baxter', breed: 'Lab', keyCareInfo: 'Loves pets!'}, 
-    Mario: {name: 'Mario', breed: 'Boston', keyCareInfo: 'Plays with slippers'}, Indiana: {name: 'Indiana', breed: 'Bouvier', keyCareInfo: 'Loves Cookies'}, 
-    Mj: {name: 'Mj', breed: 'Schnauzer', keyCareInfo: 'Loves Cookies'}})
+    Baxter: {name: 'Baxter', breed: 'Lab', keyCareInfo: 'Loves pets!', room: 'none'}, 
+    Mario: {name: 'Mario', breed: 'Boston', keyCareInfo: 'Plays with slippers', room: 'none'}, Indiana: {name: 'Indiana', breed: 'Bouvier', keyCareInfo: 'Loves Cookies', room: 'none'}, 
+    Mj: {name: 'Mj', breed: 'Schnauzer', keyCareInfo: 'Loves Cookies', room: 'none'}})
   const [rooms, setRooms] = useState([
-    {name: 'Big Dogs', occupancy: 10, dogs: [], image: './bigDog.jpg'},
-    {name: 'Small Dogs', occupancy: 15, dogs: [dogs.Mj], image: './smallDog.jpg'},
-    {name: 'Kennel', occupancy: 20, dogs: [dogs.Indiana], image: './kennel.jpg'},
-    {name: 'Walks', occupancy: 3, dogs: [dogs.Mario, dogs.Baxter], image: './walk.jpg'}]);
+    {name: 'Big Dogs', occupancy: 10, dogs: [dogs.Baxter], image: './bigDog.jpg'},
+    {name: 'Small Dogs', occupancy: 15, dogs: [], image: './smallDog.jpg'},
+    {name: 'Kennel', occupancy: 20, dogs: [], image: './kennel.jpg'},
+    {name: 'Walks', occupancy: 3, dogs: [], image: './walk.jpg'}]);
 
-    const addDog = (dog, room) => {
-      
+    const addDog = (pup, room) => {
+      emptyRooms();
+      updateDogs(pup, room);
+      updateRooms();
     }
 
-  
+    const emptyRooms = () => {
+      let temp = [];
+      for (let i = 0; i < rooms.length; i++) {
+        rooms[i].dogs = []
+        temp.push(rooms[i])
+      }
+      setRooms(temp);
+    }
+
+    const updateDogs = (pup, room) => {
+      let dogMap = {};
+      for (let dog in dogs) {
+        dogMap[dog] = dogs[dog]
+        if (dogMap[dog].name === pup) {
+          dogMap[dog].room = room;
+        }
+      }
+      setDogs(dogMap);
+    }
+
+    const updateRooms = () => {
+      let temp = {}
+      for (let i = 0; i < rooms.length; i++) {
+        temp[rooms[i].name] = rooms[i];
+      }
+
+      for (let dog in dogs) {
+        if (dogs[dog].room !== 'none') {
+          temp[dogs[dog].room].dogs.push(dogs[dog]);
+        }
+      }
+
+      let newRooms = [];
+      for (let room in temp) {
+        newRooms.push(temp[room]);
+      }
+
+      setRooms(newRooms);
+    }
 
 
   
