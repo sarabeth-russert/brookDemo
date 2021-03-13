@@ -20,22 +20,50 @@ const RoomScreen = () => {
     {name: 'Walks', occupancy: 3, dogs: [], image: './walk.jpg'}]);
 
     const addDog = (pup, room) => {
-      let map = {};
-      for (let i = 0; i < rooms.length; i++) {
-        map[rooms[i].name] = rooms[i];
-        map[rooms[i].name].dogs = [];
-      }
-      
-      let temp = [];
-      for (let room in map) {
-        temp.push(map[room]);
-      }
-      setRooms(temp);
-      
-      
+      emptyRooms();
+      updateDogs(pup, room);
+      console.log(dogs)
+      updateRooms();
     }
 
-  
+    const emptyRooms = () => {
+      let temp = [];
+      for (let i = 0; i < rooms.length; i++) {
+        rooms[i].dogs = []
+        temp.push(rooms[i])
+      }
+      setRooms(temp);
+    }
+
+    const updateDogs = (pup, room) => {
+      let dogMap = {};
+      for (let dog in dogs) {
+        dogMap[dog] = dogs[dog]
+        if (dogMap[dog].name === pup) {
+          dogMap[dog].room = room;
+        }
+      }
+      setDogs(dogMap);
+    }
+
+    const updateRooms = () => {
+      let temp = {}
+      for (let i = 0; i < rooms.length; i++) {
+        temp[rooms[i].name] = rooms[i];
+      }
+      for (let dog in dogs) {
+        if (dogs[dog].room !== 'none') {
+          temp[dogs[dog].room].dogs.push(dogs[dog]);
+        }
+      }
+
+      let newRooms = [];
+      for (let room in temp) {
+        newRooms.push(temp[room]);
+      }
+
+      setRooms(newRooms);
+    }
 
 
   
