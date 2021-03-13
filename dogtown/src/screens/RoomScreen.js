@@ -20,14 +20,7 @@ const RoomScreen = () => {
     {name: 'Walks', occupancy: 3, dogs: [dogs.Mario, dogs.Baxter], image: './walk.jpg'}]);
 
     const addDog = (dog, room) => {
-      // for (let i = 0; i < rooms.length; i++) {
-      //   How can we remove the dog from the dog array? Do we create a map of current dogs, remove the dog we dont want from the map and then replace the dog array with a new array created from the map? Not sure... How do we add dogs?
-      // }
-      // for (let i = 0; i < rooms.length; i++) {
-      //   if (rooms[i].name === room) {
-      //     rooms[i].dogs.push(dogs[dog]);
-      //   }
-      // }
+      
     }
 
   
